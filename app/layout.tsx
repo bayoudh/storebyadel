@@ -7,10 +7,10 @@ const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
-  title: "TechCare Teboulba — Maintenance Informatique & Réparation PC",
+  title: "StoreByAdel Teboulba — Maintenance Informatique & Réparation PC",
   description: "Atelier de maintenance informatique à Teboulba : réparation ordinateurs, diagnostic, dépannage et vente de composants. Devis gratuit.",
   openGraph: {
-    title: "TechCare Teboulba — Maintenance Informatique",
+    title: "StoreByAdel Teboulba — Maintenance Informatique",
     description: "Réparation et maintenance d'ordinateurs à Teboulba. Diagnostic rapide, intervention experte.",
   },
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Cpu,
   Wrench,
@@ -10,12 +10,13 @@ import {
   Phone,
   Mail,
   Laptop,
-  HardDrive,
   Send,
   CheckCircle2,
   Clock,
 } from "lucide-react";
 import Image from "next/image";
+import { animate, stagger, splitText } from 'animejs';
+
 
 const products = [
   {
@@ -73,7 +74,28 @@ export default function Home() {
     machineSerial: "",
     machineIssue: "",
   });
+  
+  useEffect(() => {
+   const { chars } = splitText('span', { words: false, chars: true });
 
+animate(chars, {
+  // Property keyframes
+  y: [
+    { to: '-2.75rem', ease: 'outExpo', duration: 600 },
+    { to: 0, ease: 'outBounce', duration: 800, delay: 100 }
+  ],
+  // Property specific parameters
+  rotate: {
+    from: '-1turn',
+    delay: 0
+  },
+  delay: stagger(50),
+  ease: 'inOutCirc',
+  loopDelay: 1000,
+  loop: true
+});
+    
+  }, []);
   const [contact, setContact] = useState({
     name: "",
     email: "",
@@ -130,7 +152,7 @@ export default function Home() {
       <header className="sticky top-0 z-50 bg-black/80 backdrop-blur border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <a href="#top" className="flex items-center gap-2">
-            <div className="h-10 w-10 rounded-xl bg-cyan-500 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-bl-xl rounded-tr-xl bg-cyan-500 flex items-center justify-center">
               <Cpu className="h-5 w-5 text-black" />
             </div>
 
@@ -159,7 +181,7 @@ export default function Home() {
 
           <a
             href="#contact"
-            className="bg-cyan-500 hover:bg-cyan-400 transition px-4 py-2 rounded-lg text-black font-medium"
+            className="bg-cyan-500 hover:bg-cyan-400 transition px-4 py-2 rounded-bl-lg text-black font-medium"
           >
             Devis gratuit
           </a>
@@ -188,7 +210,7 @@ export default function Home() {
             <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href="#recovery"
-                className="bg-cyan-500 hover:bg-cyan-400 transition px-6 py-3 rounded-xl text-black font-semibold flex items-center gap-2"
+                className="bg-cyan-500 hover:bg-cyan-400 transition px-6 py-3 rounded-bl-xl rounded-tr-xl text-black font-semibold flex items-center gap-2"
               >
                 <Laptop className="h-5 w-5" />
                 Déposer ma machine
@@ -196,7 +218,7 @@ export default function Home() {
 
               <a
                 href="#expertise"
-                className="border border-white/20 hover:border-cyan-400 transition px-6 py-3 rounded-xl"
+                className="border border-white/20 hover:border-cyan-400 transition px-6 py-3 rounded-br-xl rounded-tl-xl"
               >
                 Notre expertise
               </a>
@@ -375,7 +397,7 @@ export default function Home() {
 
             <button
               type="submit"
-              className="w-full bg-cyan-500 hover:bg-cyan-400 transition text-black font-semibold py-4 rounded-xl flex items-center justify-center gap-2"
+              className="w-full bg-cyan-500 hover:bg-cyan-400 transition text-black font-semibold py-4 rounded-b-xl flex items-center justify-center gap-2"
             >
               Demander la récupération
               <Send className="h-5 w-5" />
@@ -401,7 +423,7 @@ export default function Home() {
             {services.map((s) => (
               <div
                 key={s.title}
-                className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-cyan-400 transition"
+                className="bg-white/5 border border-white/10 rounded-bl-3xl rounded-tr-3xl p-6 hover:border-cyan-400 transition"
               >
                 <div className="h-14 w-14 rounded-xl bg-cyan-500 flex items-center justify-center mb-5">
                   <s.icon className="h-7 w-7 text-black" />
@@ -518,7 +540,7 @@ export default function Home() {
 
             <button
               type="submit"
-              className="w-full bg-cyan-500 hover:bg-cyan-400 transition text-black font-semibold py-4 rounded-xl flex items-center justify-center gap-2"
+              className="w-full bg-cyan-500 hover:bg-cyan-400 transition text-black font-semibold py-4 rounded-b-xl flex items-center justify-center gap-2"
             >
               Envoyer
               <Send className="h-5 w-5" />
